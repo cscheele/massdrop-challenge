@@ -5,7 +5,7 @@ A RESTful API for a job queue whose workers fetch data from a URL and store the 
 ## Setup
   $ npm install
   $ npm start
-  
+
 ## JSON Objects returned by API:
 
 ### Jobs
@@ -19,6 +19,7 @@ A RESTful API for a job queue whose workers fetch data from a URL and store the 
   "updatedAt": "2018-03-21T23:23:15.067Z",
   "target_html": "<html>HTML</html>"
 }
+```
 
 ### Errors and Status Codes
 
@@ -31,6 +32,7 @@ Example:
   "_id": 10,
   "target_url": "http://www.google1.com"
 }
+```
 
 ### Other codes:
 
@@ -51,6 +53,7 @@ Example request body:
 {
   "target_url": "http://www.google.com"
 }
+```
 
 Returns the job.
 
@@ -65,6 +68,7 @@ Example request body:
 {
   "target_url": "https://www.wikipedia.org"
 }
+```
 
 Returns the updated job.
 
