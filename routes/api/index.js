@@ -11,6 +11,11 @@ router.get('/jobs', function(req, res, next) {
 });
 
 router.post('/jobs', function(req, res, next) {
+  if (!req.body.target_url) {
+    var err = new Error("Please provide a target_url.");
+    err.status = 400;
+    return next(err);
+  }
   var job = new Job(req.body);
 
   job.enter(req, res, next);
@@ -21,9 +26,10 @@ router.get('/jobs/:job', function(req, res, next) {
 });
 
 router.put('/jobs/:job', function(req, res, next) {
-  console.log(req.body.target_url);
   if (!req.body.target_url) {
-    return next(new Error("please provide a target_url to update."))
+    var err = new Error("Please provide a target_url to update.");
+    err.status = 400;
+    return next(err);
   }
   req.job.target_url = req.body.target_url;
   req.job.status = 'pending';
@@ -46,7 +52,9 @@ router.param('job', function (req, res, next, id) {
       return next(err);
     }
     if (!job) {
-      return next(new Error("can't find that job"));
+      var err = new Error("Can't find that job");
+      err.status = 404;
+      return next(err);
     }
 
     req.job = job;

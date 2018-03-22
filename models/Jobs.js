@@ -18,7 +18,7 @@ JobSchema.methods.getHTML = function() {
     });
     res.on('error', err => {
       self.status = 'failed';
-      console.error(err.message);
+      this.save();
     });
     res.on('end', () => {
       self.target_html = html;
